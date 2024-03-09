@@ -63,3 +63,12 @@
     transform: rotate(360deg);
   }
 }
+
+.sample-name {
+  border: solid black 1px;
+  position: relative;
+}
+.sample-name:hover {
+  font-weight: 700;
+  cursor: pointer;
+}

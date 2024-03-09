@@ -12,9 +12,10 @@ import AclThemeProvider from "@acl/ui/common/aclThemeProvider/aclThemeProvider";
 import { Backdrop, CircularProgress, ThemeProvider } from "@mui/material";
 import React, { HTMLAttributes, useEffect, useState } from "react";
 import AxiosComponent from "utils/hooks/useAxios/exampleAxiosComponent";
-import Styles from "./App.module.css";
+import AppStyles from "./App.module.css";
 import AclBox from "./@acl/ui/components/aclBox";
 import Logo from "./logo.svg";
+import Vector from "./Vector.svg";
 
 const IconPopoverContent = (props: any) => {
   return (
@@ -142,7 +143,7 @@ const VereButton = (props: HTMLAttributes<HTMLButtonElement>) => {
 };
 
 function App() {
-  const [a, setA] = useState<any>(true);
+  const [a, setA] = useState<any>(false);
   const [b, setB] = useState<any>(false);
   const [error, setError] = useState<any>();
   const [selected, setSelected] = useState<any>([]);
@@ -231,14 +232,26 @@ function App() {
       <div
         style={{
           height: "100vh",
-          // display: "flex",
+          display: "flex",
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#eff1f7",
         }}
       >
-        <AclButton onClick={()=>setA(true)}>press</AclButton>
-        <AclModal openModal={a} toggleOpenModal={setA}>Thhs</AclModal>
+        <AclButton onClick={() => setA(true)}>click me</AclButton>
+        <div style={{ position: "relative" }}>
+          <span className={AppStyles["sample-name"]}>this is a div</span>
+          <span
+            style={{
+              position: "absolute",
+              top: "0px",
+              left: "0px",
+              fontWeight: 700,
+            }}
+          >
+            this is a div
+          </span>
+        </div>
       </div>
     </>
   );
