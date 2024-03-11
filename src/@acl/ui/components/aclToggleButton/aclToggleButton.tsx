@@ -1,5 +1,5 @@
 import { ThemeProvider, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AclThemeProvider from "../../common/aclThemeProvider/aclThemeProvider";
 import {
   IToggleButtonOptions,
@@ -18,10 +18,12 @@ const getPassedProps = (props: IToggleButtonProps) => {
 };
 
 const AclToggleButton = ({ children, ...props }: IToggleButtonProps) => {
-  const [value, setValue] = React.useState<IToggleButtonOptions>({
+  const optionLabelRef = useRef<any>(null);
+  const [value, setValue] = useState<IToggleButtonOptions>({
     id: "",
     label: "",
   });
+  const [optionLabelWidth, setOptionLabelWidth] = useState<number>();
   const exposedProps = getExposedProps(props);
   const passedProps = getPassedProps(props);
 
@@ -43,6 +45,13 @@ const AclToggleButton = ({ children, ...props }: IToggleButtonProps) => {
     }
   }, [exposedProps.defaultValue]);
 
+  useEffect(() => {
+    if (optionLabelRef?.current) {
+      const width = optionLabelRef.current.clientWidth;
+      setOptionLabelWidth(width + 25);
+    }
+  }, [optionLabelRef]);
+
   return (
     <>
       <ThemeProvider theme={AclThemeProvider}>
@@ -60,7 +69,15 @@ const AclToggleButton = ({ children, ...props }: IToggleButtonProps) => {
                 value={option}
                 aria-label={`${key}-toggle-value`}
               >
-                <div title={option.label} className="option-value">{option.label}</div>
+                <div
+                  ref={optionLabelRef}
+                  style={{
+                    width: `${optionLabelWidth}px`,
+                  }}
+                  title={option.label}
+                >
+                  {option.label}
+                </div>
               </ToggleButton>
             )
           )}

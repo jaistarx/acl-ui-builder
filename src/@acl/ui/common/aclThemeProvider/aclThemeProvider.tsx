@@ -234,16 +234,6 @@ const AclThemeProvider = createTheme({
             fontWeight: 700,
             letterSpacing: "-0.5px",
           },
-          // TODO: Remove after testing in QA
-          // ".option-value::after": {
-          //   display: "block",
-          //   // position: "absolute",
-          //   content: "attr(title)",
-          //   fontWeight: 700,
-          //   color: "transparent",
-          //   overflow: "hidden",
-          //   visibility: "hidden",
-          // },
         },
       },
     },
