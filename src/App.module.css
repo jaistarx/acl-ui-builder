@@ -64,10 +64,9 @@
   }
 }
 
-.sample-name {
-  border: solid black 1px;
-  position: relative;
-}
+/* .sample-name {
+  
+} */
 .sample-name:hover {
   font-weight: 700;
   cursor: pointer;

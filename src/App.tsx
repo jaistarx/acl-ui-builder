@@ -28,11 +28,19 @@ const tOptions = ["1", "2", "3", "4", "5", "6", "7"];
 const options = [
   {
     id: 1,
-    label: "All Reports",
+    label: "All Reports an huhih salnv sdsdv kaksd hvh",
   },
   {
     id: 2,
     label: "Starred",
+  },
+  {
+    id: 3,
+    label: "asdv asdvasd vasdvasdv",
+  },
+  {
+    id: 4,
+    label: "asdv asdvasd vasdvasdv",
   },
   // {
   //   id: 3,
@@ -238,20 +246,8 @@ function App() {
           backgroundColor: "#eff1f7",
         }}
       >
-        <AclButton onClick={() => setA(true)}>click me</AclButton>
-        <div style={{ position: "relative" }}>
-          <span className={AppStyles["sample-name"]}>this is a div</span>
-          <span
-            style={{
-              position: "absolute",
-              top: "0px",
-              left: "0px",
-              fontWeight: 700,
-            }}
-          >
-            this is a div
-          </span>
-        </div>
+        
+      <AclToggleButton options={options}></AclToggleButton>
       </div>
     </>
   );

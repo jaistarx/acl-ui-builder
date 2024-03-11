@@ -1,5 +1,11 @@
 import { ThemeProvider, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  createRef,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import AclThemeProvider from "../../common/aclThemeProvider/aclThemeProvider";
 import {
   IToggleButtonOptions,
@@ -18,12 +24,13 @@ const getPassedProps = (props: IToggleButtonProps) => {
 };
 
 const AclToggleButton = ({ children, ...props }: IToggleButtonProps) => {
-  const optionLabelRef = useRef<any>(null);
+  const optionLabelRef = useRef<RefObject<HTMLDivElement>[]>(
+    props.options?.map(() => createRef())
+  );
   const [value, setValue] = useState<IToggleButtonOptions>({
     id: "",
     label: "",
   });
-  const [optionLabelWidth, setOptionLabelWidth] = useState<number>();
   const exposedProps = getExposedProps(props);
   const passedProps = getPassedProps(props);
 
@@ -46,11 +53,12 @@ const AclToggleButton = ({ children, ...props }: IToggleButtonProps) => {
   }, [exposedProps.defaultValue]);
 
   useEffect(() => {
-    if (optionLabelRef?.current) {
-      const width = optionLabelRef.current.clientWidth;
-      setOptionLabelWidth(width + 25);
-    }
-  }, [optionLabelRef]);
+    optionLabelRef.current.forEach((ref: RefObject<HTMLDivElement>) => {
+      if (ref?.current) {
+        ref.current.style.width = `${ref.current.clientWidth + 5}px`;
+      }
+    });
+  }, [exposedProps.options]);
 
   return (
     <>
@@ -69,13 +77,7 @@ const AclToggleButton = ({ children, ...props }: IToggleButtonProps) => {
                 value={option}
                 aria-label={`${key}-toggle-value`}
               >
-                <div
-                  ref={optionLabelRef}
-                  style={{
-                    width: `${optionLabelWidth}px`,
-                  }}
-                  title={option.label}
-                >
+                <div ref={optionLabelRef.current[key]} title={option.label}>
                   {option.label}
                 </div>
               </ToggleButton>
