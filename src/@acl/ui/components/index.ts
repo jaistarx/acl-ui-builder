@@ -10,3 +10,4 @@ export { default as AclBox } from "./aclBox";
 export { default as AclPopover } from "./aclPopover";
 export { default as AclModal } from "./aclModal";
 export { default as AclToggleButton } from "./aclToggleButton";
+export { default as AclInputBase } from "./aclInputBase";

@@ -7,6 +7,7 @@ import {
   AclButton,
   AclIcon,
   AclModal,
+  AclInputBase,
 } from "@acl/ui";
 import AclThemeProvider from "@acl/ui/common/aclThemeProvider/aclThemeProvider";
 import { Backdrop, CircularProgress, ThemeProvider } from "@mui/material";
@@ -246,8 +247,9 @@ function App() {
           backgroundColor: "#eff1f7",
         }}
       >
-        
-      <AclToggleButton options={options} onChange={(e)=>console.log(e)}></AclToggleButton>
+        <AclInputBase
+          onChange={(e) => console.log(e.target.value)}
+        ></AclInputBase>
       </div>
     </>
   );
