@@ -25,7 +25,7 @@ const getPassedProps = (props: IToggleButtonProps) => {
 
 const AclToggleButton = ({ children, ...props }: IToggleButtonProps) => {
   const optionLabelRef = useRef<RefObject<HTMLDivElement>[]>(
-    props.options?.map(() => createRef())
+    props.options?.map(() => createRef()) || []
   );
   const [value, setValue] = useState<IToggleButtonOptions>({
     id: "",
@@ -73,7 +73,7 @@ const AclToggleButton = ({ children, ...props }: IToggleButtonProps) => {
           {exposedProps.options?.map(
             (option: IToggleButtonOptions, key: number) => (
               <ToggleButton
-                key={option.id}
+                key={key}
                 value={option}
                 aria-label={`${key}-toggle-value`}
               >

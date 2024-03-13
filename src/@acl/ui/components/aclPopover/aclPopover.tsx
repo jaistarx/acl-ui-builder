@@ -1,10 +1,9 @@
 import { Popover, ThemeProvider } from "@mui/material";
 import React from "react";
 import AclThemeProvider from "../../common/aclThemeProvider/aclThemeProvider";
-import { IDictionary } from "../../types/aclCore";
 import { AclPopoverProps } from "../../types/aclPopoverEntity";
 
-const getExposedProps = (props: AclPopoverProps): IDictionary<any> => {
+const getExposedProps = (props: AclPopoverProps) => {
   return {
     ...props,
     anchorOrigin: props.anchorOrigin ?? {
@@ -24,9 +23,7 @@ const AclPopover = ({ children, ...props }: AclPopoverProps) => {
   return (
     <>
       <ThemeProvider theme={AclThemeProvider}>
-        <Popover open={props.open} {...exposedProps}>
-          {children}
-        </Popover>
+        <Popover {...exposedProps}>{children}</Popover>
       </ThemeProvider>
     </>
   );

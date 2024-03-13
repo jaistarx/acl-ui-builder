@@ -227,7 +227,6 @@ const AclThemeProvider = createTheme({
           textTransform: "none",
           border: "none !important",
           borderRadius: "5px !important",
-          padding: "0px 10px",
           position: "relative",
           "&.Mui-selected": {
             background: "linear-gradient(90deg, #D1DAFF 0%, #FFD8D8 96.28%)",

@@ -31,7 +31,7 @@ const options = [
     label: "All Reports an huhih salnv sdsdv kaksd hvh",
   },
   {
-    id: 2,
+    id: 1,
     label: "Starred",
   },
   {
@@ -39,8 +39,8 @@ const options = [
     label: "asdv asdvasd vasdvasdv",
   },
   {
-    id: 4,
-    label: "asdv asdvasd vasdvasdv",
+    id: 3,
+    label: "asdvasd vasdvasdv",
   },
   // {
   //   id: 3,
@@ -247,7 +247,7 @@ function App() {
         }}
       >
         
-      <AclToggleButton options={options}></AclToggleButton>
+      <AclToggleButton options={options} onChange={(e)=>console.log(e)}></AclToggleButton>
       </div>
     </>
   );
