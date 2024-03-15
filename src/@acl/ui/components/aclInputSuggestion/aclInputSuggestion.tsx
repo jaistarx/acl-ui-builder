@@ -32,8 +32,8 @@ const getExposedProps = (props: AclInputSuggestionProps) => {
 const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
   const exposedProps = getExposedProps(props);
   const containerRef = useRef<HTMLDivElement>(null);
-  const inputBaseRef = useRef<HTMLInputElement>(null);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLDivElement>(null);
+  const inputBaseRef = useRef<HTMLDivElement>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
   const [value, setValue] = useState<string | number>("");
 
   const handleValueChange = (value: string | number) => {
@@ -49,8 +49,8 @@ const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
   };
 
   const handleCloseClicked = () => {
-    handleValueChange("");
     inputBaseRef?.current?.focus();
+    handleValueChange("");
   };
 
   const open = Boolean(anchorEl);
@@ -71,7 +71,7 @@ const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
           <div style={SEARCH_ICON_CONTAINER}>
             <AclIcon src={SearchIcon} style={SEARCH_ICON}></AclIcon>
             <InputBase
-              ref={inputBaseRef}
+              inputRef={inputBaseRef}
               fullWidth
               value={value}
               onChange={(e) => handleValueChange(e.target.value)}
