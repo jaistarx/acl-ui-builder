@@ -8,10 +8,24 @@ import {
   AclIcon,
   AclModal,
   AclInputBase,
+  AclPopover,
+  AclAutocomplete,
+  AclInput,
+  AclInputSuggestion,
 } from "@acl/ui";
 import AclThemeProvider from "@acl/ui/common/aclThemeProvider/aclThemeProvider";
-import { Backdrop, CircularProgress, ThemeProvider } from "@mui/material";
-import React, { HTMLAttributes, useEffect, useState } from "react";
+import {
+  Autocomplete,
+  Backdrop,
+  Box,
+  CircularProgress,
+  Divider,
+  Input,
+  Popper,
+  TextField,
+  ThemeProvider,
+} from "@mui/material";
+import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import AxiosComponent from "utils/hooks/useAxios/exampleAxiosComponent";
 import AppStyles from "./App.module.css";
 import AclBox from "./@acl/ui/components/aclBox";
@@ -154,22 +168,28 @@ const VereButton = (props: HTMLAttributes<HTMLButtonElement>) => {
 function App() {
   const [a, setA] = useState<any>(false);
   const [b, setB] = useState<any>(false);
+  const [val, ivalue] = useState<any>("false");
   const [error, setError] = useState<any>();
   const [selected, setSelected] = useState<any>([]);
 
   const [openmodal, setOpenModal] = useState(false);
 
-  enum UserProfile {
-    Admin = "Ad",
-    Manager = "Manager",
-    Overreader = "Overreader",
-    Abstractor = "Abstractor",
-    Guest = "Guest",
-  }
+  const handleValueChange = (value: any) => {
+    ivalue(value);
+    if (!!value) {
+      setA(false);
+    } else {
+      setA(true);
+    }
+  };
 
-  useEffect(() => {
-    // console.log(error);
-  }, [error]);
+  // useEffect(() => {
+  //   if (!!val) {
+  //     setA(false);
+  //   } else {
+  //     setA(true);
+  //   }
+  // }, [val]);
 
   return (
     // <>
@@ -244,12 +264,52 @@ function App() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#eff1f7",
+          backgroundColor: "lightblue",
         }}
       >
-        <AclInputBase
-          onChange={(e) => console.log(e.target.value)}
-        ></AclInputBase>
+        {/* <Autocomplete
+            freeSolo
+            open={a}
+            value={val}
+            options={tOptions}
+            onFocus={(e: any) => handleValueChange(e.target.value)}
+            onBlur={() => setA(false)}
+            onInputChange={(_, value) => handleValueChange(value)}
+            getOptionLabel={(option: any) => `${option}`}
+            renderInput={(params) => (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <AclIcon
+                  src={Logo}
+                  style={{ width: "24px", height: "24px" }}
+                ></AclIcon>
+                <AclInput {...params} />
+                <AclIcon
+                  src={Logo}
+                  style={{ width: "24px", height: "24px" }}
+                ></AclIcon>
+              </div>
+            )}
+          ></Autocomplete> */}
+        {/* <AclAutocomplete
+            renderInput={(params) => (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <AclIcon
+                  src={Logo}
+                  style={{ width: "24px", height: "24px" }}
+                ></AclIcon>
+                <AclInput {...params} />
+              </div>
+            )}
+            options={tOptions}
+            onChange={(value) => console.log(value)}
+          ></AclAutocomplete> */}
+        {/* <div> */}
+        <AclInputSuggestion
+          options={tOptions}
+          onChange={(e) => console.log(e)}
+        ></AclInputSuggestion>
+
+        {/* </div> */}
       </div>
     </>
   );

@@ -64,10 +64,9 @@
   }
 }
 
-/* .sample-name {
-  
-} */
-.sample-name:hover {
-  font-weight: 700;
+.options {
+}
+.options:hover {
   cursor: pointer;
+  background-color: gray;
 }

@@ -159,11 +159,12 @@ const AclThemeProvider = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
+          border: "none !important",
           padding: "0px",
           margin: "0px",
-          ".MuiInputLabel-root, .MuiInputLabel-root.Mui-focused, .MuiInputLabel-root.Mui-error":
+          "& .MuiInputLabel-root, .MuiInputLabel-root.Mui-focused, .MuiInputLabel-root.Mui-error":
             {
-              color: "#818E9B",
+              border: "none",
             },
         },
       },
@@ -233,6 +234,22 @@ const AclThemeProvider = createTheme({
             fontWeight: 700,
             letterSpacing: "-0.5px",
           },
+        },
+      },
+    },
+    // MuiAutocomplete
+    MuiAutocomplete: {
+      styleOverrides: {
+        root: {
+          padding: "5px 20px 0px 20px",
+          "& .MuiInput-root": {
+            "&:before, :after, :hover:not(.Mui-disabled):before": {
+              borderBottom: 0,
+            },
+          },
+          "& .MuiAutocomplete-popper":{
+            backgroundColor:"red !important"
+          }
         },
       },
     },
