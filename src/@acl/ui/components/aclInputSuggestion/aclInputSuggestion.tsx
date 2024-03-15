@@ -44,10 +44,6 @@ const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
     setAnchorEl(Boolean(value) ? null : containerRef.current);
   };
 
-  const handleClickAway = () => {
-    setAnchorEl(null);
-  };
-
   const handleCloseClicked = () => {
     handleValueChange("");
     inputBaseRef?.current?.focus();
@@ -83,7 +79,7 @@ const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
           </div>
         </div>
         <Popper id={id} open={open} anchorEl={anchorEl}>
-          <ClickAwayListener onClickAway={handleClickAway}>
+          <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
             <div style={POPPER_CONTAINER(containerRef?.current?.offsetWidth)}>
               <div style={DIVIDER_CONTAINER}>
                 <Divider></Divider>
