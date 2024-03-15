@@ -31,7 +31,8 @@ const getExposedProps = (props: AclInputSuggestionProps) => {
 
 const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
   const exposedProps = getExposedProps(props);
-  const containerRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputBaseRef = useRef<HTMLInputElement>(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLDivElement>(null);
   const [value, setValue] = useState<string | number>("");
 
@@ -40,15 +41,16 @@ const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
     if (props.onChange) {
       props.onChange(value);
     }
-    if (Boolean(value)) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(containerRef.current);
-    }
+    setAnchorEl(Boolean(value) ? null : containerRef.current);
   };
 
-  const handleClickAway = () => {
-    setAnchorEl(null);
+  const handleClickAway = (e: any) => {
+    if (e.currentTarget !== containerRef.current) setAnchorEl(null);
+  };
+
+  const handleCloseClicked = () => {
+    handleValueChange("");
+    inputBaseRef?.current?.focus();
   };
 
   const open = Boolean(anchorEl);
@@ -58,28 +60,30 @@ const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
     <>
       <ThemeProvider theme={AclThemeProvider}>
         <div
-          onClick={(event) => setAnchorEl(event.currentTarget)}
+          onClick={(event) =>
+            Boolean(value)
+              ? setAnchorEl(null)
+              : setAnchorEl(event.currentTarget)
+          }
           ref={containerRef}
           style={INPUT_OUTER_CONTAINER(open)}
         >
           <div style={SEARCH_ICON_CONTAINER}>
             <AclIcon src={SearchIcon} style={SEARCH_ICON}></AclIcon>
             <InputBase
+              ref={inputBaseRef}
               fullWidth
               value={value}
               onChange={(e) => handleValueChange(e.target.value)}
               {...exposedProps}
             ></InputBase>
             {Boolean(value) && (
-              <AclIcon
-                src={CloseIcon}
-                onClick={() => handleValueChange("")}
-              ></AclIcon>
+              <AclIcon src={CloseIcon} onClick={handleCloseClicked}></AclIcon>
             )}
           </div>
         </div>
         <Popper id={id} open={open} anchorEl={anchorEl}>
-          <ClickAwayListener onClickAway={handleClickAway}>
+          <ClickAwayListener onClickAway={(e) => handleClickAway(e)}>
             <div style={POPPER_CONTAINER(containerRef?.current?.offsetWidth)}>
               <div style={DIVIDER_CONTAINER}>
                 <Divider></Divider>

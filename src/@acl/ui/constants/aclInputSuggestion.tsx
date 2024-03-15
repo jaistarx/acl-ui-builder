@@ -25,14 +25,14 @@ export const SEARCH_ICON = {
   marginRight: "8px",
 };
 
-export const POPPER_CONTAINER = (offsetWidth: number) => {
+export const POPPER_CONTAINER = (offsetWidth: number | undefined) => {
   return {
     borderBottomRightRadius: "16px",
     borderBottomLeftRadius: "16px",
     border: "solid #DEE0E7 1px",
     backgroundColor: "#FCFCFC",
     borderTop: "none",
-    width: `${offsetWidth - 2}px`,
+    width: offsetWidth ? `${offsetWidth - 2}px` : undefined,
   };
 };
 
