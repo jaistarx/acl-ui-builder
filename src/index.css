@@ -16,7 +16,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 170px;
+  width: 200px;
   height: 40px;
   cursor: pointer;
   padding: 2px;
@@ -59,6 +59,7 @@ code {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   border: solid #dee0e7 1px;
+  width: 188px;
 }
 
 .acl-popper {
@@ -70,4 +71,7 @@ code {
   overflow-y: auto;
   margin-top: 12px;
   padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
 }

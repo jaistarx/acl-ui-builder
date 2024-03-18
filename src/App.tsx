@@ -200,7 +200,7 @@ function App() {
 
   const handleClientSelect = () => {
     setClientDropdownAnchorEl(clientDropdownRef.current);
-    clientSelectionInputRef?.current?.focus();
+    // clientSelectionInputRef?.current?.focus();
   };
   return (
     // <>
@@ -336,20 +336,18 @@ function App() {
             disablePortal
             className="acl-popper"
           >
-            <div className="popper-wrapper" style={{ width: "160px" }}>
+            <div className="popper-wrapper">
               <AclInputSearch
                 inputRef={clientSelectionInputRef}
               ></AclInputSearch>
               <div className="popper-client-list">
-                Premera<br></br>
-                Premera<br></br>
-                Premera<br></br>
-                Premera<br></br>
-                Premera<br></br>
-                Premera<br></br>
-                Premera<br></br>
-                Premera<br></br>
-                Premera<br></br>
+                <span>Premera</span>
+                <span>Premera</span>
+                <span>Premera</span>
+                <span>Premera</span>
+                <span>Premera</span>
+                <span>Premera</span>
+                <span>Premera</span>
               </div>
             </div>
           </AclPopper>
