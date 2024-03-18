@@ -12,5 +12,6 @@ export { default as AclPopper } from "./aclPopper";
 export { default as AclModal } from "./aclModal";
 export { default as AclToggleButton } from "./aclToggleButton";
 export { default as AclInputBase } from "./aclInputBase";
+export { default as AclInputSearch } from "./aclInputSearch";
 export { default as AclAutocomplete } from "./aclAutocomplete";
 export { default as AclInputSuggestion } from "./aclInputSuggestion";

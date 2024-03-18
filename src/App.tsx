@@ -12,6 +12,8 @@ import {
   AclAutocomplete,
   AclInput,
   AclInputSuggestion,
+  AclPopper,
+  AclInputSearch,
 } from "@acl/ui";
 import AclThemeProvider from "@acl/ui/common/aclThemeProvider/aclThemeProvider";
 import {
@@ -31,6 +33,8 @@ import AppStyles from "./App.module.css";
 import AclBox from "./@acl/ui/components/aclBox";
 import Logo from "./logo.svg";
 import Vector from "./Vector.svg";
+import ClickOutsideComponent from "utils/hooks/useClickOutside/exampleClickOutsideComponent";
+import { useClickOutside } from "utils";
 
 const IconPopoverContent = (props: any) => {
   return (
@@ -182,15 +186,22 @@ function App() {
       setA(true);
     }
   };
+  const [clientDropdownAnchorEl, setClientDropdownAnchorEl] =
+    useState<HTMLDivElement | null>(null);
+  const clientDropdownRef = useRef<HTMLDivElement>(null);
+  const clientSelectionInputRef = useRef<HTMLInputElement>(null);
+  const clientDropdownOpen = Boolean(clientDropdownAnchorEl);
+  const clientDropdownId = clientDropdownOpen
+    ? "client-dropdown-popper"
+    : undefined;
+  useClickOutside(clientDropdownRef, () => {
+    setClientDropdownAnchorEl(null);
+  });
 
-  // useEffect(() => {
-  //   if (!!val) {
-  //     setA(false);
-  //   } else {
-  //     setA(true);
-  //   }
-  // }, [val]);
-
+  const handleClientSelect = () => {
+    setClientDropdownAnchorEl(clientDropdownRef.current);
+    clientSelectionInputRef?.current?.focus();
+  };
   return (
     // <>
     //   <div className={Styles["header"]}>header</div>
@@ -264,7 +275,7 @@ function App() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "lightblue",
+          // backgroundColor: "lightblue",
         }}
       >
         {/* <Autocomplete
@@ -304,12 +315,45 @@ function App() {
             onChange={(value) => console.log(value)}
           ></AclAutocomplete> */}
         {/* <div> */}
-        <AclInputSuggestion
-          options={tOptions}
-          onChange={(e) => console.log(e)}
-        ></AclInputSuggestion>
-
-        {/* </div> */}
+        <div
+          className={`client-dropdown-container ${
+            clientDropdownOpen
+              ? "client-dropdown-container-opened"
+              : "client-dropdown-container-closed"
+          }`}
+          ref={clientDropdownRef}
+          onClick={handleClientSelect}
+        >
+          <div className="client-dropdown-name-container">
+            <AclIcon className="client-dropdown-icon"></AclIcon>
+            <div className="client-dropdown-name">Anthem</div>
+          </div>
+          <AclIcon className="client-dropdown-down-icon"></AclIcon>
+          <AclPopper
+            id={clientDropdownId}
+            open={clientDropdownOpen}
+            anchorEl={clientDropdownAnchorEl}
+            disablePortal
+            className="acl-popper"
+          >
+            <div className="popper-wrapper" style={{ width: "160px" }}>
+              <AclInputSearch
+                inputRef={clientSelectionInputRef}
+              ></AclInputSearch>
+              <div className="popper-client-list">
+                Premera<br></br>
+                Premera<br></br>
+                Premera<br></br>
+                Premera<br></br>
+                Premera<br></br>
+                Premera<br></br>
+                Premera<br></br>
+                Premera<br></br>
+                Premera<br></br>
+              </div>
+            </div>
+          </AclPopper>
+        </div>
       </div>
     </>
   );
