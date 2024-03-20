@@ -12,6 +12,25 @@ code {
     monospace;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    200px
+  ); /* Fixed width of grid items */
+  grid-gap: 10px; /* Gap between grid items */
+}
+
+.grid-item {
+  background-color: #ccc;
+  height: 150px; /* Fixed height of grid items */
+  width: 200px; /* Fixed width of grid items */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
 .client-dropdown-container {
   display: flex;
   align-items: center;

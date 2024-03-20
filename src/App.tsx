@@ -270,13 +270,15 @@ function App() {
         </AclCard>
       </div> */}
       <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          // backgroundColor: "lightblue",
-        }}
+        style={
+          {
+            // height: "100vh",
+            // display: "flex",
+            // alignItems: "center",
+            // justifyContent: "center",
+            // backgroundColor: "lightblue",
+          }
+        }
       >
         {/* <Autocomplete
             freeSolo
@@ -315,42 +317,13 @@ function App() {
             onChange={(value) => console.log(value)}
           ></AclAutocomplete> */}
         {/* <div> */}
-        <div
-          className={`client-dropdown-container ${
-            clientDropdownOpen
-              ? "client-dropdown-container-opened"
-              : "client-dropdown-container-closed"
-          }`}
-          ref={clientDropdownRef}
-          onClick={handleClientSelect}
-        >
-          <div className="client-dropdown-name-container">
-            <AclIcon className="client-dropdown-icon"></AclIcon>
-            <div className="client-dropdown-name">Anthem</div>
-          </div>
-          <AclIcon className="client-dropdown-down-icon"></AclIcon>
-          <AclPopper
-            id={clientDropdownId}
-            open={clientDropdownOpen}
-            anchorEl={clientDropdownAnchorEl}
-            disablePortal
-            className="acl-popper"
-          >
-            <div className="popper-wrapper">
-              <AclInputSearch
-                inputRef={clientSelectionInputRef}
-              ></AclInputSearch>
-              <div className="popper-client-list">
-                <span>Premera</span>
-                <span>Premera</span>
-                <span>Premera</span>
-                <span>Premera</span>
-                <span>Premera</span>
-                <span>Premera</span>
-                <span>Premera</span>
-              </div>
-            </div>
-          </AclPopper>
+        <div className="grid-container">
+          <div className="grid-item">1</div>
+          <div className="grid-item">2</div>
+          <div className="grid-item">3</div>
+          <div className="grid-item">4</div>
+          <div className="grid-item">5</div>
+          <div className="grid-item">6</div>
         </div>
       </div>
     </>

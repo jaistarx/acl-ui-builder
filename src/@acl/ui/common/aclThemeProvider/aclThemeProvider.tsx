@@ -111,7 +111,9 @@ const AclThemeProvider = createTheme({
           position: "relative",
           overflow: "hidden",
           whiteSpace: "nowrap",
-          // fontFamily: "Roboto",
+          ":hover": {
+            backgroundColor: "#5063AE",
+          },
           fontSize: "14px",
         },
         contained: {
@@ -247,9 +249,9 @@ const AclThemeProvider = createTheme({
               borderBottom: 0,
             },
           },
-          "& .MuiAutocomplete-popper":{
-            backgroundColor:"red !important"
-          }
+          "& .MuiAutocomplete-popper": {
+            backgroundColor: "red !important",
+          },
         },
       },
     },
