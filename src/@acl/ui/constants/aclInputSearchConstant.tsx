@@ -6,3 +6,7 @@ export const INPUT_SEARCH_WRAPPER = {
   backgroundColor: "#EFF1F7",
   padding: "8px 16px",
 };
+
+export const CLOSE_ICON = (inputValue: string) => {
+  return { opacity: inputValue === "" ? 0 : 1 };
+};

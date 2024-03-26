@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import type {} from "@mui/x-date-pickers/themeAugmentation";
 
 const AclThemeProvider = createTheme({
   palette: {
@@ -111,16 +110,28 @@ const AclThemeProvider = createTheme({
           position: "relative",
           overflow: "hidden",
           whiteSpace: "nowrap",
-          ":hover": {
-            backgroundColor: "#5063AE",
-          },
           fontSize: "14px",
         },
         contained: {
           color: "#FCFCFC",
+          ":hover": {
+            backgroundColor: "#5063AE",
+          },
         },
         outlined: {
           border: "solid 1px",
+          ":hover": {
+            borderColor: "#5063AE",
+            color: "#5063AE",
+          },
+        },
+        text: {
+          backgroundColor: "transparent",
+          fontWeight: 400,
+          ":hover": {
+            backgroundColor: "transparent",
+            color: "#5063AE",
+          },
         },
       },
     },
@@ -161,12 +172,11 @@ const AclThemeProvider = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          border: "none !important",
           padding: "0px",
           margin: "0px",
-          "& .MuiInputLabel-root, .MuiInputLabel-root.Mui-focused, .MuiInputLabel-root.Mui-error":
+          ".MuiInputLabel-root, .MuiInputLabel-root.Mui-focused, .MuiInputLabel-root.Mui-error":
             {
-              border: "none",
+              color: "#818E9B",
             },
         },
       },
@@ -203,9 +213,9 @@ const AclThemeProvider = createTheme({
       styleOverrides: {
         root: {
           ".MuiPopover-paper": {
-            boxShadow: "4px 7px 16px 0px #00000014",
-            borderRadius: "0px 0px 8px 8px",
-            border: "solid #E6E8F0 1px",
+            boxShadow: "none",
+            borderRadius: "12px",
+            border: "solid #DEE0E7 1px",
           },
         },
       },
@@ -237,28 +247,6 @@ const AclThemeProvider = createTheme({
             letterSpacing: "-0.5px",
           },
         },
-      },
-    },
-    // MuiAutocomplete
-    MuiAutocomplete: {
-      styleOverrides: {
-        root: {
-          padding: "5px 20px 0px 20px",
-          "& .MuiInput-root": {
-            "&:before, :after, :hover:not(.Mui-disabled):before": {
-              borderBottom: 0,
-            },
-          },
-          "& .MuiAutocomplete-popper": {
-            backgroundColor: "red !important",
-          },
-        },
-      },
-    },
-    // MuiDatePicker
-    MuiDatePicker: {
-      defaultProps: {
-        // use if needed
       },
     },
     // Add other theme settings as needed

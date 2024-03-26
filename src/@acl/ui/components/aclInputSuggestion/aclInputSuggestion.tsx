@@ -15,7 +15,7 @@ import {
   POPPER_CONTAINER,
   SEARCH_ICON,
   SEARCH_ICON_CONTAINER,
-} from "../../constants/aclInputSuggestion";
+} from "../../constants/aclInputSuggestionConstant";
 import { AclInputSuggestionProps } from "../../types/aclInputSuggestionEntity";
 import AclIcon from "../aclIcon";
 import ClockIcon from "./icons/clock-icon.svg";
@@ -32,11 +32,11 @@ const getExposedProps = (props: AclInputSuggestionProps) => {
 const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
   const exposedProps = getExposedProps(props);
   const containerRef = useRef<HTMLDivElement>(null);
-  const inputBaseRef = useRef<HTMLDivElement>(null);
+  const inputBaseRef = useRef<HTMLInputElement>(null);
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
-  const [value, setValue] = useState<string | number>("");
+  const [value, setValue] = useState<string>("");
 
-  const handleValueChange = (value: string | number) => {
+  const handleValueChange = (value: string) => {
     if (props.onChange) {
       props.onChange(value);
     }
@@ -85,18 +85,16 @@ const AclInputSuggestion = ({ ...props }: AclInputSuggestionProps) => {
                 <Divider></Divider>
               </div>
               <div style={OPTIONS_OUTER_CONTAINER}>
-                {exposedProps.options.map(
-                  (option: string | number, key: number) => (
-                    <div
-                      onClick={() => handleValueChange(option)}
-                      key={key}
-                      style={OPTIONS_CONTAINER}
-                    >
-                      <AclIcon src={ClockIcon}></AclIcon>
-                      <span>{option}</span>
-                    </div>
-                  )
-                )}
+                {exposedProps.options.map((option: string, key: number) => (
+                  <div
+                    onClick={() => handleValueChange(option)}
+                    key={key}
+                    style={OPTIONS_CONTAINER}
+                  >
+                    <AclIcon src={ClockIcon}></AclIcon>
+                    <span>{option}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </ClickAwayListener>

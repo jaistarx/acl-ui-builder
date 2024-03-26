@@ -15,7 +15,7 @@ export declare type IToggleButtonProps = Omit<
   ToggleButtonGroupProps,
   keyof OmittedToggleButtonProps
 > & {
-  options: IToggleButtonOptions[];
+  options?: IToggleButtonOptions[];
   onChange?: (event: any) => void;
   defaultValue?: IToggleButtonOptions;
 };

@@ -4,7 +4,6 @@ export * from "./aclCore";
 export * from "./aclDropdownEntity";
 export * from "./aclIconEntity";
 export * from "./aclInputEntity";
-export * from "./aclTableEntity";
 export * from "./aclLinkEntity";
 export * from "./aclDrawerEntity";
 export * from "./aclBoxEntity";

@@ -1,7 +1,16 @@
 import { InputProps } from "@mui/material";
+import { ChangeEvent } from "react";
 
-export declare type AclInputSuggestionProps = InputProps & {
-  options: (number | string)[];
+type OmittedInputSuggestionProps = {
+  // Omit the property to override it
+  onChange?: ChangeEvent<HTMLInputElement>;
+};
+
+export declare type AclInputSuggestionProps = Omit<
+  InputProps,
+  keyof OmittedInputSuggestionProps
+> & {
+  options: string[];
   children?: React.ReactNode;
-  onChange?: (event: number | string) => void;
+  onChange?: (event: string) => void;
 };

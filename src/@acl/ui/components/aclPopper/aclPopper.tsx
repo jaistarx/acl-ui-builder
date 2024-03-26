@@ -6,6 +6,7 @@ import { AclPopperProps } from "../../types/aclPopperEntity";
 const getExposedProps = (props: AclPopperProps) => {
   return {
     ...props,
+    disablePortal: props.disablePortal ?? true,
   };
 };
 

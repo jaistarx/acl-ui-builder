@@ -148,11 +148,11 @@ const AclDropdown = (props: IDropdownExposedProps) => {
     // if(exposedProps.triggerReset) {
     //   exposedProps.triggerReset = false;
     // }
-  }, [exposedProps.triggerReset]);
+  }, [exposedProps.triggerReset, props.defaultValue]);
 
   useEffect(() => {
     setSelectedOptions(getDefaultValues(props.defaultValue, props.multiple));
-  }, [props.multiple]);
+  }, [props.multiple, props.defaultValue]);
 
   return (
     <>

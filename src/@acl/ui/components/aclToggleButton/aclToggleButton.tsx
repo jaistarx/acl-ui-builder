@@ -1,7 +1,7 @@
 import { ThemeProvider, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import React, {
-  createRef,
   RefObject,
+  createRef,
   useEffect,
   useRef,
   useState,
@@ -73,7 +73,7 @@ const AclToggleButton = ({ children, ...props }: IToggleButtonProps) => {
           {exposedProps.options?.map(
             (option: IToggleButtonOptions, key: number) => (
               <ToggleButton
-                key={key}
+                key={option.id}
                 value={option}
                 aria-label={`${key}-toggle-value`}
               >
