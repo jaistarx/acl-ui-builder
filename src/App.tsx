@@ -1,19 +1,20 @@
 import {
   AclToggleButton,
   AclCard,
-  AclTable,
-  ITableColDef,
   AclDrawer,
   AclButton,
   AclIcon,
   AclModal,
   AclInputBase,
   AclPopover,
-  AclAutocomplete,
   AclInput,
   AclInputSuggestion,
   AclPopper,
   AclInputSearch,
+  AclAccordion,
+  AclAccordionSummary,
+  AclAccordionDetails,
+  AclLink,
 } from "@acl/ui";
 import AclThemeProvider from "@acl/ui/common/aclThemeProvider/aclThemeProvider";
 import {
@@ -26,6 +27,7 @@ import {
   Popper,
   TextField,
   ThemeProvider,
+  Typography,
 } from "@mui/material";
 import React, { HTMLAttributes, useEffect, useRef, useState } from "react";
 import AxiosComponent from "utils/hooks/useAxios/exampleAxiosComponent";
@@ -35,6 +37,10 @@ import Logo from "./logo.svg";
 import Vector from "./Vector.svg";
 import ClickOutsideComponent from "utils/hooks/useClickOutside/exampleClickOutsideComponent";
 import { useClickOutside } from "utils";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Navig from "./side-menu-option-line-middle.svg";
+import LastNavig from "./side-menu-option-line-end.svg";
+import CDown from "./chevron-down-icon.svg";
 
 const IconPopoverContent = (props: any) => {
   return (
@@ -71,7 +77,7 @@ const options = [
   // },
 ];
 
-const columns: Array<ITableColDef> = [
+const columns: Array<any> = [
   {
     field: "chaseId",
     headerName: "Chase ID",
@@ -202,6 +208,14 @@ function App() {
     setClientDropdownAnchorEl(clientDropdownRef.current);
     // clientSelectionInputRef?.current?.focus();
   };
+
+  const [expanded, setExpanded] = React.useState<string | false>(false);
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
+
   return (
     // <>
     //   <div className={Styles["header"]}>header</div>
@@ -270,15 +284,13 @@ function App() {
         </AclCard>
       </div> */}
       <div
-        style={
-          {
-            // height: "100vh",
-            // display: "flex",
-            // alignItems: "center",
-            // justifyContent: "center",
-            // backgroundColor: "lightblue",
-          }
-        }
+        style={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          // backgroundColor: "lightblue",
+        }}
       >
         {/* <Autocomplete
             freeSolo
@@ -317,14 +329,80 @@ function App() {
             onChange={(value) => console.log(value)}
           ></AclAutocomplete> */}
         {/* <div> */}
-        <div className="grid-container">
-          <div className="grid-item">1</div>
-          <div className="grid-item">2</div>
-          <div className="grid-item">3</div>
-          <div className="grid-item">4</div>
-          <div className="grid-item">5</div>
-          <div className="grid-item">6</div>
-        </div>
+        <AclDrawer openWidth="300px" toggleDrawer={true}>
+          <div
+            style={{
+              padding: "10px",
+              height: "100%",
+              // backgroundColor: "green",
+              display: "flex",
+              flexDirection: "column",
+              rowGap: "8px",
+            }}
+          >
+            {[
+              "1asasdc sdcasd",
+              "2sdac sdcasd",
+              "3asdca sd csd",
+              "4sdc asd sadc",
+            ].map((a) => (
+              <AclAccordion
+                disableGutters
+                expanded={expanded === a}
+                onChange={handleChange(a)}
+              >
+                <AclAccordionSummary
+                  aria-controls={a + "-panel-content"}
+                  id={a + "-panel-header"}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      width: "100%",
+                    }}
+                  >
+                    <div>{a}</div>
+                    <AclIcon
+                      src={CDown}
+                      style={{
+                        transform: expanded === a ? "rotate(180deg)" : "none",
+                        transition: "0.3s",
+                      }}
+                    />
+                  </div>
+                </AclAccordionSummary>
+                <AclAccordionDetails>
+                  <>
+                    {["Encounter 1", "Encounter 2", "Encounter 3"].map(
+                      (b, index) => (
+                        <div
+                          style={{
+                            padding: "0px",
+                            display: "flex",
+                            columnGap: "8px",
+                            alignItems: "center",
+                            height: "37px",
+                          }}
+                        >
+                          <AclIcon
+                            src={index < 2 ? Navig : LastNavig}
+                            style={{
+                              height: "100%",
+                              width: "14px",
+                            }}
+                          ></AclIcon>
+                          <div>{b}</div>
+                        </div>
+                      )
+                    )}
+                  </>
+                </AclAccordionDetails>
+              </AclAccordion>
+            ))}
+          </div>
+        </AclDrawer>
       </div>
     </>
   );

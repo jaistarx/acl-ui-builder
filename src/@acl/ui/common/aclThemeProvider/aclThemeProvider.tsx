@@ -249,6 +249,39 @@ const AclThemeProvider = createTheme({
         },
       },
     },
+    // MuiAccordion
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          color: "#262B68",
+          textTransform: "none",
+          border: "none !important",
+          borderRadius: "12px !important",
+          position: "relative",
+          boxShadow: "none",
+          fontSize: "14px",
+          "&:before": {
+            content: "none",
+          },
+          ".Mui-expanded": {
+            color: "#262B68",
+            borderRadius: "12px !important",
+            background: "linear-gradient(90deg, #D1DAFF 0%, #FFD8D8 96.28%)",
+            fontWeight: 700,
+            letterSpacing: "-0.5px",
+          },
+          ".MuiAccordionSummary-root": {
+            maxHeight: "40px",
+            "&:hover": {
+              color: "#5063AE",
+            },
+          },
+          ".MuiAccordionDetails-root": {
+            padding: "0px 0px 0px 24px",
+          },
+        },
+      },
+    },
     // Add other theme settings as needed
   },
 });
