@@ -10,5 +10,3 @@ export * from "./aclBoxEntity";
 export * from "./aclPopoverEntity";
 export * from "./aclModalEntity";
 export * from "./aclAccordionEntity";
-export * from "./aclAccordionDetailsEntity";
-export * from "./aclAccordionSummaryEntity";
