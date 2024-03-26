@@ -13,4 +13,5 @@ export { default as AclToggleButton } from "./aclToggleButton";
 export { default as AclInputBase } from "./aclInputBase";
 export { default as AclInputSearch } from "./aclInputSearch";
 export { default as AclInputSuggestion } from "./aclInputSuggestion";
+export { default as AclDivider } from "./aclDivider";
 export * from "./aclAccordion";

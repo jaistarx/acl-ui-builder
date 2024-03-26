@@ -254,6 +254,7 @@ const AclThemeProvider = createTheme({
       styleOverrides: {
         root: {
           color: "#262B68",
+          background: "transparent",
           textTransform: "none",
           border: "none !important",
           borderRadius: "12px !important",
